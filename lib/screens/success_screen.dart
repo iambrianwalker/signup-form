@@ -10,7 +10,7 @@ class SuccessScreen extends StatefulWidget {
   const SuccessScreen({
     super.key,
     required this.userName,
-    required this.email, // 👈 FIXED
+    required this.email, // 
   });
 
   @override
@@ -75,7 +75,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
 
                   const SizedBox(height: 15),
 
-                  // ✅ EMAIL DISPLAY
+                  // EMAIL DISPLAY
                   Text(
                     "Email: ${widget.email}",
                     textAlign: TextAlign.center,
