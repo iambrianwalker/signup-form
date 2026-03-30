@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/signup_screen.dart';
+import 'package:confetti/confetti.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget{
@@ -11,6 +12,26 @@ class WelcomeScreen extends StatefulWidget{
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
+  late ConfettiController _confettiController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _confettiController = ConfettiController(
+      duration: const Duration(seconds: 2),
+    );
+
+    // 🎉 Play automatically when screen loads
+    _confettiController.play();
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +65,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 );
               },
               child: Text('Sign Up'),
+            ),
+            // 🎉 Confetti overlay
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConfettiWidget(
+                confettiController: _confettiController,
+                blastDirectionality: BlastDirectionality.explosive,
+                emissionFrequency: 0.05,
+                numberOfParticles: 25,
+                gravity: 0.2,
+              ),
             ),
           ],
         ),
