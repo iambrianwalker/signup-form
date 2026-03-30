@@ -31,6 +31,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ElevatedButton(
               onPressed: () {
                 // TODO: navigate to signup screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => SignupPage())
+                );
               },
               child: Text('Sign Up'),
             ),
