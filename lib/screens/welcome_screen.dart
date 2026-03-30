@@ -23,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       duration: const Duration(seconds: 2),
     );
 
-    // 🎉 Play automatically when screen loads
+    //Play automatically when screen loads
     _confettiController.play();
   }
 
@@ -54,11 +54,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               totalRepeatCount: 1,
             ),
 
-            SizedBox(height: 20), // space between text and button
+            SizedBox(height: 20), 
 
             ElevatedButton(
               onPressed: () {
-                // TODO: navigate to signup screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => SignupPage())
@@ -66,7 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               },
               child: Text('Sign Up'),
             ),
-            // 🎉 Confetti overlay
+            //Confetti overlay
             Align(
               alignment: Alignment.topCenter,
               child: ConfettiWidget(
