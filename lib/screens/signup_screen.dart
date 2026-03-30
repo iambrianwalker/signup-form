@@ -9,10 +9,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  // 🔑 The Global Key - acts like a remote control for the form
   final _formKey = GlobalKey<FormState>();
-  
-  // 📝 Controllers to track what the user types
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -20,14 +18,14 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // 👨 Parent
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Join Us Today for the Cash Money!'),
         backgroundColor: Colors.purple,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form( // 👶 Child
+        child: Form(
           key: _formKey,
           child: Column(
             children: [
@@ -35,9 +33,10 @@ class _SignupPageState extends State<SignupPage> {
                 'Create Your Account',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
+
               const SizedBox(height: 20),
-              
-              // 👤 Name Field
+
+              // NAME
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -52,9 +51,10 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
+
               const SizedBox(height: 16),
-              
-              // 📧 Email Field
+
+              // EMAIL
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -72,9 +72,10 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
+
               const SizedBox(height: 16),
-              
-              // 🔒 Password Field
+
+              // PASSWORD
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
@@ -93,45 +94,51 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
+
               const SizedBox(height: 24),
 
-              //Confirm Password Field
+              // CONFIRM PASSWORD
               TextFormField(
-                controller : _confirmPasswordController,
+                controller: _confirmPasswordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(),
                 ),
-                validator: (value){
+                validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a password';
+                    return 'Please confirm your password';
                   }
-                  if (value != _passwordController.text){
+                  if (value != _passwordController.text) {
                     return 'Passwords must match';
                   }
                   return null;
                 },
               ),
-              const SizedBox(height:24),
 
-              
-              // 🚀 Sign Up Button
+              const SizedBox(height: 24),
+
+              // SIGN UP BUTTON
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Welcome! Account created successfully.'),
-                        backgroundColor: Colors.green,
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SuccessScreen(
+                          userName: _nameController.text,
+                          email: _emailController.text,
+                        ),
                       ),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 12),
                 ),
                 child: const Text(
                   'Sign Up',
