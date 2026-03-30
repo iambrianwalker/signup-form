@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/signup_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget{
 
@@ -18,12 +19,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Welcome',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
+            AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  'Welcome',
+                  textStyle: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  speed: Duration(milliseconds: 100),
+                ),
+              ],
+              totalRepeatCount: 1,
             ),
 
             SizedBox(height: 20), // space between text and button
